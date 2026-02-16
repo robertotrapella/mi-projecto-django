@@ -1,0 +1,27 @@
+[project]
+name = "mi-proyecto-django"
+version = "0.1.0"
+description = "Proyecto Django con uv"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.0",
+    "djangorestframework>=3.14",
+    "python-decouple>=3.8",
+    "psycopg2-binary>=2.9",
+]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=4.2",
+    "ipython>=8.0",
+]
+test = [
+    "pytest>=8.0",
+    "pytest-django>=4.8",
+    "pytest-cov>=4.1",
+]
+lint = [
+    "ruff>=0.1",
+    "mypy>=1.8",
+]
