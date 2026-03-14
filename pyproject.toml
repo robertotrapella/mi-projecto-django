@@ -25,3 +25,14 @@ lint = [
     "ruff>=0.1",
     "mypy>=1.8",
 ]
+[project.scripts]
+dev = "manage:main"
+
+[tool.uv.scripts]
+serve = "python manage.py runserver"
+migrate = "python manage.py migrate"
+makemigrations = "python manage.py makemigrations"
+shell = "python manage.py shell"
+test = "pytest"
+lint = "ruff check ."
+format = "ruff format ."

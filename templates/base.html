@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>Hola Mundo</h1>
+    {{ name }}<br>
+    {{ age }}<br>
+    {{ message }}<br>
+
+    {% for item in example_list %}
+        {{ item }}<br>
+    {% endfor %}
+
+    {% if request.user.is_authenticated %}
+        <p>Bienvenido, {{ request.user.username }}</p>
+        
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer; padding:0;">
+                Cerrar sesión
+            </button>
+        </form>
+    {% else %}
+        <p>No has iniciado sesión.</p>
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+    {% endif %}
+</body>
+</html>
