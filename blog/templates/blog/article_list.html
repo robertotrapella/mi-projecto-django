@@ -1,0 +1,48 @@
+<!-- Verificar si el usuario está autenticado -->
+{% if user.is_authenticated %}
+    <p>Bienvenido, {{ user.username }}</p>
+{% endif %}
+
+<!-- Verificar un permiso específico -->
+
+<!-- Verificar si pertenece a un grupo -->
+<!-- Nota: no existe un tag built-in, pero puedes crear uno -->
+
+<h2>Artículos</h2>
+
+{% if perms.blog.add_article %}
+    <a href="{% url 'article_create' %}">Nuevo artículo</a>
+{% endif %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+            <td>{{ article.title }}</td>
+            <td>{{ article.author.username }}</td>
+            <td>
+
+                {% if perms.blog.change_article %}
+                    <a href="{% url 'article_edit' article.pk %}">Editar</a>
+                {% endif %}
+
+                {% if perms.blog.delete_article %}
+                    <a href="{% url 'article_delete' article.pk %}">Eliminar</a>
+                {% endif %}
+
+                {% if perms.blog.publish_article and not article.published %}
+                    <a href="{% url 'article_publish' article.pk %}">Publicar</a>
+                {% endif %}
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

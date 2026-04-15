@@ -5,6 +5,7 @@ from users.views import index, inicio, register
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,6 +46,9 @@ urlpatterns = [
         ),
         name='password_reset_complete'
     ),
+    path('blog/', include('blog.urls')),
+    path('', include('accounts.urls')),
+
 ]
 
 if settings.DEBUG:

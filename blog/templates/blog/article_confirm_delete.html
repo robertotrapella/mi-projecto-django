@@ -1,0 +1,10 @@
+<h2>¿Seguro que quieres eliminar este artículo?</h2>
+
+<p><strong>{{ article.title }}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+
+<a href="{% url 'article_list' %}">Cancelar</a>
